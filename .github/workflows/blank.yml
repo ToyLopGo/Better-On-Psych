@@ -13,6 +13,8 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    env:
+      working-directory: ./
     steps:
       - uses: krdlab/setup-haxe@v1
         with:
@@ -42,3 +44,4 @@ jobs:
           haxelib install SScript
           cd $GITHUB_WORKFLOW
           haxelib run lime build windows
+        working-directory: ${{env.working-directory}}
