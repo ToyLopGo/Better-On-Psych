@@ -30,7 +30,7 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: MAKE REPO FOLDER👍👍👍
-      - run: 
+      - run: |
           mkdir repo
       - name: WOW CLONE😁
       - uses: sudosubin/git-clone-action@v1.0.1
@@ -60,9 +60,9 @@ jobs:
           haxelib install BrewScript
           haxelib install SScript
       - name: OMG LS😯😯😯
-      - run:
+      - run: |
           ls
       - name: Just Build😎
-      - run:
+      - run: |
           haxelib run lime build windows
         working-directory: ${{env.working-directory}}
