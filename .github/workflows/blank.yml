@@ -42,6 +42,8 @@ jobs:
           haxelib install hscript
           haxelib install BrewScript
           haxelib install SScript
+          ls
           cd $GITHUB_WORKFLOW
+          ls
           haxelib run lime build windows
         working-directory: ${{env.working-directory}}
