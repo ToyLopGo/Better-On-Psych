@@ -20,13 +20,8 @@ jobs:
       - uses: TheMrMilchmann/setup-msvc-dev@v3
         with:
           arch: x64
-          sdk: |
-            10.0.22621.0
-            10.0.20348.0
-          toolset: |
-            14.00
-            14.29 
-            14.16
+          sdk: 10.0.22621.0
+          toolset: 14.29 
       - run: |
           haxe -version
           haxelib install lime
