@@ -40,4 +40,5 @@ jobs:
           haxelib install hscript
           haxelib install BrewScript
           haxelib install SScript
+          cd $GITHUB_REPOSITORY
           haxelib run lime build windows
