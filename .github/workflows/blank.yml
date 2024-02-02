@@ -28,6 +28,7 @@ jobs:
           haxelib install openfl
           haxelib install flixel
           haxelib run lime setup flixel
+          haxelib run setup lime -alias -y
           haxelib install linc_luajit
           haxelib install tjson
           haxelib install hxCodec
@@ -39,5 +40,4 @@ jobs:
           haxelib install hscript
           haxelib install BrewScript
           haxelib install SScript
-          lime rebuild extension-webm windows
           lime build windows -final
