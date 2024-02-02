@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Just Build😎
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows
+    runs-on: windows-latest
     steps:
       - uses: krdlab/setup-haxe@v1
         with:
