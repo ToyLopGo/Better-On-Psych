@@ -1,0 +1,45 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows
+    steps:
+      - uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: 4.2.5
+      - uses: TheMrMilchmann/setup-msvc-dev@v3
+        with:
+          arch: x64
+          sdk: 10.0.22621.0, 10.0.20348.0
+          toolset: 14.00, 14.29, 14.16
+      - run: |
+          haxe -version
+          haxelib install lime
+          haxelib install openfl
+          haxelib install flixel
+          haxelib run lime setup flixel
+          n
+          4
+          haxelib install linc_luajit
+          haxelib install tjson
+          haxelib install hxCodec
+          haxelib install hxdiscord_rpc
+          haxelib install flxanimate
+          haxelib install polymod
+          haxelib install faxe
+          haxelib install extension-webm
+          haxelib install hscript
+          haxelib install BrewScript
+          haxelib install SScript
+          lime rebuild extension-webm windows
+          lime build windows -final
