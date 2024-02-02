@@ -40,4 +40,4 @@ jobs:
           haxelib install hscript
           haxelib install BrewScript
           haxelib install SScript
-          Run haxelib run lime build windows
+          haxelib run lime build windows
