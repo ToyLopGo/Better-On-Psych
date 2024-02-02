@@ -24,7 +24,19 @@ jobs:
           arch: x64
           sdk: 10.0.22621.0
           toolset: 14.29 
+      - uses: actions/labeler@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+  # You may pin to the exact commit or the version.
+  # uses: sudosubin/git-clone-action@8a93ce24d47782e30077508cccacf8a05a891bae
+      - uses: sudosubin/git-clone-action@v1.0.1
+        with: 
+            platform: 'github'
+          
       - run: |
+          git init
+          git remote add origin https://github.com/ToyLopGo/Better-On-Psych
+          ls
           haxe -version
           haxelib install lime
           haxelib install openfl
@@ -42,8 +54,6 @@ jobs:
           haxelib install hscript
           haxelib install BrewScript
           haxelib install SScript
-          ls
-          cd $GITHUB_WORKFLOW
           ls
           haxelib run lime build windows
         working-directory: ${{env.working-directory}}
