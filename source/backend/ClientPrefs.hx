@@ -75,6 +75,9 @@ import states.TitleState;
 	public var safeFrames:Float = 10;
 	public var guitarHeroSustains:Bool = true;
 	public var discordRPC:Bool = true;
+	public var mainMenuSide:String = "Left";
+	public var doTweenEnabled:Bool = true;
+	public var doCenterLogo:Bool = false;
 }
 
 class ClientPrefs {
