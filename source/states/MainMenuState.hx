@@ -10,7 +10,10 @@ import flixel.tweens.FlxTween;
 
 class MainMenuState extends MusicBeatState
 {
+	public static var leftside:Int = 0;
+	public static var rightside:Int = 690;
 	public static var psychEngineVersion:String = '0.7.3'; // This is also used for Discord RPC
+	public static var BOPVersion:String = '0.0.1';
 	public static var curSelected:Int = 0;
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
@@ -84,9 +87,15 @@ class MainMenuState extends MusicBeatState
 			if (optionShit.length < 6)
 				scr = 0;
 			menuItem.scrollFactor.set(0, scr);
+			switch (ClientPrefs.data.mainMenuSide) {
+				case 'Left':
+					menuItem.x = leftside;
+				case 'Right':
+					menuItem.x = rightside;
+				case 'Center':
+					menuItem.screenCenter(X);
+			}
 			menuItem.updateHitbox();
-			//menuItem.screenCenter(X);
-			menuItem.x = 0;
 		}
 
 		var psychVer:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
@@ -95,8 +104,12 @@ class MainMenuState extends MusicBeatState
 		add(psychVer);
 		var fnfVer:FlxText = new FlxText(12, FlxG.height - 24, 0, "Friday Night Funkin' v" + Application.current.meta.get('version'), 12);
 		fnfVer.scrollFactor.set();
-		fnfVer.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(fnfVer);
+		fnfVer.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		var bopVer:FlxText = new FlxText(12, FlxG.height - 64, 0, "Better On Psych v" + BOPVersion, 12);
+		bopVer.scrollFactor.set();
+		bopVer.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(bopVer);
 		changeItem();
 
 		#if ACHIEVEMENTS_ALLOWED
@@ -219,9 +232,17 @@ class MainMenuState extends MusicBeatState
 		FlxG.sound.play(Paths.sound('scrollMenu'));
 		menuItems.members[curSelected].animation.play('idle');
 		menuItems.members[curSelected].updateHitbox();
-		//menuItems.members[curSelected].screenCenter(X);
-		FlxTween.tween(menuItems.members[curSelected], {x: 0, y: menuItems.members[curSelected].y}, 0.5 , {type: FlxTween.ONESHOT, ease: FlxEase.sineInOut,});
-		
+		if (ClientPrefs.data.doTweenEnabled)
+			{
+				switch (ClientPrefs.data.mainMenuSide) {
+					case 'Left':
+						FlxTween.tween(menuItems.members[curSelected], {x: leftside, y: menuItems.members[curSelected].y}, 0.5 , {type: FlxTween.ONESHOT, ease: FlxEase.sineInOut,});
+					case 'Right':
+						FlxTween.tween(menuItems.members[curSelected], {x: rightside, y: menuItems.members[curSelected].y}, 0.5 , {type: FlxTween.ONESHOT, ease: FlxEase.sineInOut,});
+					case 'Center':
+						menuItems.members[curSelected].screenCenter(X);
+				}
+			}
 
 		curSelected += huh;
 
@@ -232,8 +253,17 @@ class MainMenuState extends MusicBeatState
 
 		menuItems.members[curSelected].animation.play('selected');
 		menuItems.members[curSelected].centerOffsets();
-		//menuItems.members[curSelected].screenCenter(X);
-		FlxTween.tween(menuItems.members[curSelected], {x: (FlxG.width / 2) - (menuItems.members[curSelected].width / 2), y: menuItems.members[curSelected].y}, 0.5 , {type: FlxTween.ONESHOT, ease: FlxEase.sineInOut,});
+		if (ClientPrefs.data.doTweenEnabled)
+			{
+				switch (ClientPrefs.data.mainMenuSide) {
+					case 'Left':
+						FlxTween.tween(menuItems.members[curSelected], {x: (FlxG.width / 2) - (menuItems.members[curSelected].width / 2), y: menuItems.members[curSelected].y}, 0.5 , {type: FlxTween.ONESHOT, ease: FlxEase.sineInOut,});
+					case 'Right':
+						FlxTween.tween(menuItems.members[curSelected], {x: (FlxG.width / 2) - (menuItems.members[curSelected].width / 2), y: menuItems.members[curSelected].y}, 0.5 , {type: FlxTween.ONESHOT, ease: FlxEase.sineInOut,});
+					case 'Center':
+						menuItems.members[curSelected].screenCenter(X);
+				}
+			}
 
 		camFollow.setPosition(menuItems.members[curSelected].getGraphicMidpoint().x,
 			menuItems.members[curSelected].getGraphicMidpoint().y - (menuItems.length > 4 ? menuItems.length * 8 : 0));
