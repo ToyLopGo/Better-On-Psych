@@ -152,6 +152,24 @@ class VisualsUISubState extends BaseOptionsMenu
 			'bool');
 		addOption(option);
 
+		var option:Option = new Option('Main menu side',
+		"On what side will be UI",
+		'mainMenuSide',
+		'string',
+		['Left', 'Right', 'Center']);
+	    addOption(option);
+
+		var option:Option = new Option('Enable Tween',
+		"Will tween enabled on main menu",
+		'doTweenEnabled',
+		'bool');
+
+		var option:Option = new Option('Enable Cool Logo',
+		"Will tween enabled and centered logo on title",
+		'doCenterLogo',
+		'bool');
+	    addOption(option);
+
 		super();
 		add(notes);
 	}
