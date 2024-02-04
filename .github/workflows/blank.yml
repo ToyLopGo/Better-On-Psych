@@ -16,17 +16,18 @@ jobs:
     env:
       working-directory: ./
     steps:
+      - uses: actions/checkout@v3
       - name: just haxe😑
-      - uses: krdlab/setup-haxe@v1
+        uses: krdlab/setup-haxe@v1
         with:
           haxe-version: 4.2.5
       - name: MAKE REPO FOLDER👍👍👍
-      - run: |
+        run: |
           mkdir repo
       - name: WOW CLONE😁
-      - run: git clone https://github.com/ToyLopGo/Better-On-Psych.git
+        run: git clone https://github.com/ToyLopGo/Better-On-Psych.git
       - name: LIBRARIES😍😍😍
-      - run: |
+        run: |
           git init
           git remote add origin https://github.com/ToyLopGo/Better-On-Psych
           ls
@@ -48,9 +49,9 @@ jobs:
           haxelib install BrewScript
           haxelib install SScript
       - name: OMG LS😯😯😯
-      - run: |
+        run: |
           ls
       - name: Just Build😎
-      - run: |
+        run: |
             haxelib run lime build html5
       - working-directory: ${{env.working-directory}}
