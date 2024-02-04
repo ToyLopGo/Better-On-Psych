@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Just Build😎
+name: Just Build
 
 on:
   push:
@@ -13,25 +13,23 @@ on:
 jobs:
   build:
     runs-on: html5-latest
-    env:
-      working-directory: ./
     steps:
       - uses: actions/checkout@v3
       
-      - name: just haxe😑
+      - name: just haxe
         uses: krdlab/setup-haxe@v1
         with:
           haxe-version: 4.2.5
           
-      - name: MAKE REPO FOLDER👍👍👍
+      - name: MAKE REPO FOLDER
         run: |
           mkdir repo
           cd repo
 
-      - name: WOW CLONE😁
+      - name: WOW CLONE
         run: git clone https://github.com/ToyLopGo/Better-On-Psych.git
         
-      - name: LIBRARIES😍😍😍
+      - name: LIBRARIES
         run: |
           git init
           git remote add origin https://github.com/ToyLopGo/Better-On-Psych
@@ -54,12 +52,10 @@ jobs:
           haxelib install BrewScript
           haxelib install SScript
           
-      - name: OMG LS😯😯😯
+      - name: OMG LS
         run: |
           ls
           
-      - name: Just Build😎
+      - name: Just Build
         run: |
             haxelib run lime build html5
-            
-      - working-directory: ${{env.working-directory}}
