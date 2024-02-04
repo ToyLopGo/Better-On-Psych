@@ -21,6 +21,13 @@ jobs:
         with:
           haxe-version: 4.2.5
           
+      - name: MSVC😒     
+        uses: TheMrMilchmann/setup-msvc-dev@v3.0.0
+        with:
+          arch: x64
+          sdk: 10.0.20348.0
+          toolset: 14.29
+          
       - name: MAKE REPO FOLDER😫
         run: |
           mkdir repo
@@ -58,4 +65,4 @@ jobs:
           
       - name: Just Build😎
         run: |
-            haxelib run lime build html5
+            haxelib run lime build windows
